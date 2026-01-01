@@ -19,7 +19,6 @@ import DeleteMedical from './components/medical/DeleteMedical';
 import EditMedical from './components/medical/EditMedical';
 import Search from './components/Search';
 import Showallmed from './components/medicine/Showallmed';
-import Favorites from './components/Favourites';
 
 function App() {
   return (
@@ -27,7 +26,6 @@ function App() {
         <Router>
               <Routes>
                     <Route path='/' element={<HomePage/>} />
-                    <Route path='/favourites' element={<Favorites/>} />
                     <Route path='/login' element={<Login/>} />
                     <Route path='/change_pass' element={<ChangePass/>} />
                     <Route path='/get_admin' element={<Editprof/>} />
