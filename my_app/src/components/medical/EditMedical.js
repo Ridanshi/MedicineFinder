@@ -21,14 +21,16 @@ function EditMedical() {
     }, []);
 
     const displayMedical = async () => {
-        let res = await fetch("http://localhost:5000/get_medicals", {
+        const res = await fetch("/get_medicals", {
             method: "post",
             body: JSON.stringify({ id }),
             headers: {
                 "Content-Type": "application/json",
             },
+            credentials: "include" // ✅ REQUIRED
         });
-        let result = await res.json();
+
+        const result = await res.json();
         setSname(result.storename);
         setOwner(result.owner);
         setAddress(result.address);
@@ -37,22 +39,28 @@ function EditMedical() {
         setEmail(result.email);
     };
 
+
     const handleOnSubmit = async (e) => {
         e.preventDefault();
-        let res = await fetch("http://localhost:5000/update_medical", {
+
+        const res = await fetch("/update_medical", {
             method: "post",
             body: JSON.stringify({ sname, owner, address, contact, lno, id }),
             headers: {
                 "Content-Type": "application/json",
             },
+            credentials: "include" // ✅ REQUIRED
         });
-        let result = await res.json();
+
+        const result = await res.json();
+
         if (result.data === "success") {
             setResult("Data saved successfully!");
         } else {
             setResult(result.msg || "Something went wrong.");
         }
     };
+
 
     return (
         <>

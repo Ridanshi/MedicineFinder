@@ -28,13 +28,17 @@ function EditMedi() {
     }, []);
 
     const displayMedicine = async () => {
-        let res = await fetch("http://localhost:5000/get_medicine", {
-            method: "post",
-            body: JSON.stringify({ id }),
-            headers: {
-                "Content-Type": "application/json",
-            },
-        });
+        let res = await fetch(
+            `${process.env.REACT_APP_API_URL}/get_medicine`,
+            {
+                method: "post",
+                body: JSON.stringify({ id }),
+                headers: {
+                    "Content-Type": "application/json",
+                },
+            }
+        );
+
         let result = await res.json();
         setMedid(result._id);
         setName(result.medname);
@@ -47,13 +51,17 @@ function EditMedi() {
 
     const handleOnSubmit = async (e) => {
         e.preventDefault();
-        let res = await fetch("http://localhost:5000/update_medicine", {
-            method: "post",
-            body: JSON.stringify({ id, name, com, lic, desp, uprice, type }),
-            headers: {
-                "Content-Type": "application/json",
-            },
-        });
+        let res = await fetch(
+            `${process.env.REACT_APP_API_URL}/update_medicine`,
+            {
+                method: "post",
+                body: JSON.stringify({ id, name, com, lic, desp, uprice, type }),
+                headers: {
+                    "Content-Type": "application/json",
+                },
+            }
+        );
+
         res = await res.json();
         if (res.data === "success") {
             setResult("Data saved successfully.");

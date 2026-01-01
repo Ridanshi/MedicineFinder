@@ -15,19 +15,23 @@ function ShowMedi() {
 
     const displayMedicine = async () => {
         try {
-            const res = await axios.get("/show_medicine"); // Using global baseURL
-            // Check if response is an array before setting
+            const res = await axios.get("/show_medicine", {
+                withCredentials: true
+            });
+
             if (Array.isArray(res.data)) {
                 setMedi(res.data);
             } else {
-                setMedi([]); // Set empty array if backend returns { msg: "..." }
+                setMedi([]);
             }
+
             console.log(res.data);
         } catch (err) {
             console.log(err);
-            setMedi([]); // Set empty array on error
+            setMedi([]);
         }
     };
+
 
     return (
         <>

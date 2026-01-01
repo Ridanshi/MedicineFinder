@@ -20,14 +20,16 @@ function DeleteMedical() {
     }, []);
 
     const displayMedical = async () => {
-        let res = await fetch("http://localhost:5000/get_medicals", {
+        const res = await fetch("/get_medicals", {
             method: "post",
             body: JSON.stringify({ id }),
             headers: {
                 "Content-Type": "application/json",
             },
+            credentials: "include" // ✅ REQUIRED
         });
-        let result = await res.json();
+
+        const result = await res.json();
         setSname(result.storename);
         setOwner(result.owner);
         setAddress(result.address);
@@ -36,18 +38,24 @@ function DeleteMedical() {
         setEmail(result.email);
     };
 
+
     const handleOnSubmit = async (e) => {
         e.preventDefault();
-        let res = await fetch("http://localhost:5000/delete_medical", {
+
+        const res = await fetch("/delete_medical", {
             method: "post",
             body: JSON.stringify({ sname, owner, address, contact, lno, id }),
             headers: {
                 "Content-Type": "application/json",
             },
+            credentials: "include" // ✅ REQUIRED
         });
-        let result = await res.json();
+
+        const result = await res.json();
+
         if (result.data === "success") {
             setResult("Data deleted successfully.");
+            setTimeout(() => history("/admin/show_medical"), 1500);
         } else {
             setResult(result.msg || "Something went wrong.");
         }

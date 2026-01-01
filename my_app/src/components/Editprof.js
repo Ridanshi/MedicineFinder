@@ -24,9 +24,11 @@ function Editprof() {
     const displayAdmin = async () => {
         try {
             // ADD withCredentials: true here ← THIS WAS THE PROBLEM
-            let admindata = await axios.get("http://localhost:5000/get_admin", {
-                withCredentials: true
-            });
+            let admindata = await axios.get(
+                `${process.env.REACT_APP_API_URL}/get_admin`,
+                { withCredentials: true }
+            );
+
 
             console.log(admindata);
             if (admindata) {
@@ -50,7 +52,7 @@ function Editprof() {
         e.preventDefault();
         try {
             let result = await fetch(
-                'http://localhost:5000/update_admin_profile', {
+                `${process.env.REACT_APP_API_URL}/update_admin_profile`, {
                 method: "post",
                 body: JSON.stringify({ name, address, contact }),
                 credentials: 'include', // ← ADD THIS

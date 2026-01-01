@@ -20,7 +20,7 @@ function MedReg() {
         console.log(name, com, lic, desp, uprice, type);
 
         try {
-            let r = await fetch('http://localhost:5000/register_medicine', {
+            let r = await fetch(`${process.env.REACT_APP_API_URL}/register_medicine`, {
                 method: 'post',
                 body: JSON.stringify({ name, com, lic, desp, uprice, type }),
                 credentials: 'include', // ← ADDED THIS - CRITICAL!

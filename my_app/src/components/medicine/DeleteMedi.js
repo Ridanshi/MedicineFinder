@@ -28,13 +28,17 @@ function DeleteMedi() {
     }, []);
 
     const displayMedicine = async () => {
-        const res = await fetch("http://localhost:5000/get_medicine", {
-            method: "post",
-            body: JSON.stringify({ id }),
-            headers: {
-                "Content-Type": "application/json",
-            },
-        });
+        const res = await fetch(
+            `${process.env.REACT_APP_API_URL}/get_medicine`,
+            {
+                method: "post",
+                body: JSON.stringify({ id }),
+                headers: {
+                    "Content-Type": "application/json",
+                },
+            }
+        );
+
         const result = await res.json();
         setMedid(result._id);
         setName(result.medname);
@@ -47,13 +51,17 @@ function DeleteMedi() {
 
     const handleOnSubmit = async (e) => {
         e.preventDefault();
-        const res = await fetch("http://localhost:5000/delete_medicine", {
-            method: "post",
-            body: JSON.stringify({ id, name, com, lic, desp, uprice, type }),
-            headers: {
-                "Content-Type": "application/json",
-            },
-        });
+        const res = await fetch(
+            `${process.env.REACT_APP_API_URL}/delete_medicine`,
+            {
+                method: "post",
+                body: JSON.stringify({ id, name, com, lic, desp, uprice, type }),
+                headers: {
+                    "Content-Type": "application/json",
+                },
+            }
+        );
+
         const result = await res.json();
         if (result.data === "success") {
             setResult("Data deleted successfully.");

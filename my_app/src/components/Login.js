@@ -13,7 +13,7 @@ function Login() {
   const handleOnSubmit = async (e) => {
     e.preventDefault();
     try {
-      let result = await fetch('http://localhost:5000/check_login', {
+      let result = await fetch(`${process.env.REACT_APP_API_URL}/check_login`, {
         method: "POST",
         body: JSON.stringify({ email, password }),
         headers: { 'Content-Type': 'application/json' },
