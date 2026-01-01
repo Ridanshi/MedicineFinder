@@ -1,25 +1,19 @@
- # Dependencies
-node_modules/
+# Backend
 backend/node_modules/
-
-# Environment variables (backend only)
 backend/.env
+backend/uploads/
+
+# Frontend
+my_app/node_modules/
 
 # Vercel
 .vercel
 
 # Logs
-logs
 *.log
-npm-debug.log*
 
-# OS Files
+# OS / IDE
 .DS_Store
 Thumbs.db
-
-# IDE
 .vscode/
 .idea/
-*.swp
-*.swo
-*~
